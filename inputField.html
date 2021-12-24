@@ -1,0 +1,108 @@
+<DOC TYPE html>
+<html>
+    <head>
+        <meta charset ="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>BASIC INPUT TYPES</title>
+        <link rel="stylesheet" href="inputfield-form.css">
+    </head>
+    <body>
+        <form>
+            <header class="HeaderContainer"><h1>HTML 5 Form Input Fields</h1></header>
+            <div>
+                <label for ="text for input">text input type for name:</label>
+                <input type= "text" id="text" name="textforinput">
+                <error-output class ="text-error" for ="textfor input"></error-output>
+            </div>
+
+            <div>
+                <label for ="pwd">password input type</label>
+                <input type ="password" id ="pwd" name="pwd">
+            </div>
+
+            <div>
+                <label for ="email">email input type</label>
+                <input type="email" id="email" name="emial">
+            </div>
+
+            <div>
+                <label for ="url">url input type</label>
+                <input type="url" id="url" name="url">
+            </div>
+
+            <div>
+                <label for ="number">number input type</label>
+                <input type="number" id="number" name="number">
+            </div>
+
+            <div>
+                <label for="tel">Phone No: </label>
+                <input type="tel" id="tel" name="tel">
+                <error-output class="phone-class" for="tel"></error-output>
+            </div>
+            <div>
+                <label for="search">Search for: </label>
+                <input type="search" id="search" name="search">
+            </div>
+            <div class="nativeDateTimePicker">
+                <label for="party">Date of Birth: </label>
+                <input type="datetime-local" id="party" name="bday">
+                <span class="validity"></span>
+            </div>
+            <div>
+                <label for="salary">Salary: </label>
+                <input type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
+                <output class="salary-output" for="salary">400000</output>
+            </div>
+            <div>
+                <button>Submit</button>
+            </div>
+        </form>
+        <script>
+            //uc1
+           const text=document.querySelector('#text');
+           const textError=document.querySelector('.text-error');
+           text.addEventListener('input',function(){
+               let nameRegex=RegExp('^[A-Z]{1}[a-z]{3,}$');
+               if(nameRegex.test(text.value))
+               textError.textContent="";
+               else textError.textContent="Name is Incorrect";
+            });
+           
+            //uc2
+            const email = document.querySelector('#email');
+            const emailError = document.querySelector('.email-class');
+            email.addEventListener('input', function ()
+            {
+                let emailRegex = RegExp('^[\\w-+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$');
+                if (emailRegex.test(email.value))
+                emailError.textContent = "";
+                else emailError.textContent = " Email is incorrect";
+            });
+            //uc3
+            const phone = document.querySelector('#tel');
+            const phoneError = document.querySelector('.phone-class');
+            phone.addEventListener('input', function ()
+            {
+                let phoneRegex = RegExp('^(\\+\\d{2}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$');
+                if (phoneRegex.test(phone.value))
+                phoneError.textContent = "";
+                else phoneError.textContent = " Phone is incorrect";
+            });
+            //uc5
+            const password = document.querySelector('#pwd');
+            const passwordError = document.querySelector('.pwd-class');
+            password.addEventListener('input', function ()
+            {
+                let pwdRegex1 = RegExp('[A-Za-z]');
+                let pwdRegex2 = RegExp('.*[A-Z]');
+                let pwdRegex3 = RegExp('.*[0-9]');
+                let pwdRegex4 = RegExp('.{8,}');
+                let splCharCount = (password.value.match(new RegExp("[\\_\\?\\#\\@\\#]", "g")) || []).length;
+                if (pwdRegex1.test(password.value) && pwdRegex2.test(password.value) && pwdRegex3.test(password.value) && pwdRegex4.test(password.value) && splCharCount == 1)
+                passwordError.textContent = "";
+                else passwordError.textContent = " Password is error";
+            })
+        </script>
+    </body>    
+</html>
